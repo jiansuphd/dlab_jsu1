@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Evolution of Trust - Recreation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Inter:wght@400;600;700;800&display=swap");
+
+      :root {
+        --bg-paper: #f9f7f2;
+        --accent-yellow: #ffde59;
+        --border-thick: 3px;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-paper);
+        color: #2d2d2d;
+        background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+
+      .hand-drawn {
+        font-family: "Comic Neue", cursive;
+      }
+
+      .card {
+        background: white;
+        border: var(--border-thick) solid #000;
+        box-shadow: 6px 6px 0px #000;
+        transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-radius: 4px;
+      }
+
+      .card:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 9px 9px 0px #000;
+      }
+
+      .btn-game {
+        border: var(--border-thick) solid #000;
+        box-shadow: 4px 4px 0px #000;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.1s ease;
+        border-radius: 4px;
+      }
+
+      .btn-game:hover {
+        transform: translate(-1px, -1px);
+        box-shadow: 5px 5px 0px #000;
+      }
+
+      .btn-game:active {
+        transform: translate(3px, 3px);
+        box-shadow: 1px 1px 0px #000;
+      }
+
+      .btn-game:disabled {
+        background-color: #e5e7eb !important;
+        color: #9ca3af !important;
+        box-shadow: 2px 2px 0px #000;
+        transform: none;
+        cursor: not-allowed;
+      }
+
+      .character-icon {
+        font-size: 3.5rem;
+        filter: drop-shadow(3px 3px 0px #000);
+        display: inline-block;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .scene {
+        display: none;
+        animation: fadeIn 0.4s ease-out;
+      }
+
+      .scene.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .bar-container {
+        height: 34px;
+        background: #fff;
+        border: var(--border-thick) solid #000;
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px;
+      }
+
+      .bar {
+        height: 100%;
+        transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+
+      .machine-box {
+        background: #fff;
+        border: 4px solid #000;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .nav-link {
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: #000;
+        background: var(--accent-yellow);
+      }
+
+      .score-badge {
+        background: #000;
+        color: #fff;
+        padding: 2px 10px;
+        border-radius: 99px;
+        font-size: 1.2rem;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <!-- Progress Navigation -->
+    <nav
+      id="nav"
+      class="fixed top-6 left-6 right-6 flex justify-between items-center z-20"
+    >
+      <button
+        onclick="prevScene()"
+        id="prevBtn"
+        class="btn-game bg-white px-4 py-2 text-sm"
+      >
+        ← Back
+      </button>
+      <div
+        id="sceneProgress"
+        class="bg-black text-white text-[10px] px-3 py-1 font-black uppercase tracking-[0.2em] rounded-full"
+      >
+        Page 1 / 6
+      </div>
+      <button
+        onclick="nextScene()"
+        id="nextBtn"
+        class="btn-game bg-white px-4 py-2 text-sm"
+      >
+        Next →
+      </button>
+    </nav>
+
+    <!-- MAIN GAME CONTAINER -->
+    <div class="max-w-2xl w-full py-20">
+      <!-- SCENE 1: Introduction -->
+      <div id="scene-0" class="scene active text-center space-y-8">
+        <h1
+          class="text-5xl font-black italic tracking-tighter hand-drawn leading-tight"
+        >
+          THE EVOLUTION <br />
+          OF <span class="text-yellow-500">TRUST</span>
+        </h1>
+        <div class="character-icon">🕊️</div>
+        <p
+          class="text-xl leading-relaxed max-w-lg mx-auto font-medium text-gray-700"
+        >
+          During World War I, opposite sides in the trenches would often stop
+          shooting at each other for long periods.
+          <br /><br />
+          They called it
+          <span class="bg-yellow-200 px-1 font-bold text-black"
+            >"Live and Let Live."</span
+          >
+        </p>
+        <div class="pt-4">
+          <button
+            onclick="nextScene()"
+            class="btn-game bg-yellow-400 hover:bg-yellow-300 px-12 py-4 text-2xl"
+          >
+            Start Story
+          </button>
+        </div>
+      </div>
+
+      <!-- SCENE 2: The Machine (Interactive) -->
+      <div id="scene-1" class="scene text-center space-y-8">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-black uppercase tracking-tight">
+            The Machine
+          </h2>
+          <p class="text-gray-600 font-medium italic">
+            If you put in 1 coin, they get 3. Vice versa.
+          </p>
+        </div>
+
+        <div
+          class="flex flex-col md:flex-row justify-center items-center gap-8 py-8"
+        >
+          <!-- Player Area -->
+          <div class="card p-6 w-40 space-y-3 bg-blue-50">
+            <div class="text-5xl">👤</div>
+            <div
+              class="font-black text-xs uppercase tracking-widest text-blue-600"
+            >
+              YOU
+            </div>
+            <div id="playerScore" class="score-badge">0</div>
+          </div>
+
+          <!-- Central Machine -->
+          <div class="machine-box p-8 rounded-full">
+            <div class="text-6xl animate-pulse">🎰</div>
+          </div>
+
+          <!-- Opponent Area -->
+          <div class="card p-6 w-40 space-y-3 bg-rose-50">
+            <div id="opponentIcon" class="text-5xl">🐱</div>
+            <div
+              id="opponentName"
+              class="font-black text-xs uppercase tracking-widest text-rose-600"
+            >
+              COPYCAT
+            </div>
+            <div id="opponentScore" class="score-badge">0</div>
+          </div>
+        </div>
+
+        <div
+          id="gameControls"
+          class="flex flex-col sm:flex-row justify-center gap-4"
+        >
+          <button
+            onclick="playTurn('cooperate')"
+            class="btn-game bg-emerald-400 px-8 py-4 text-white text-lg hover:bg-emerald-500"
+          >
+            COOPERATE
+          </button>
+          <button
+            onclick="playTurn('cheat')"
+            class="btn-game bg-rose-400 px-8 py-4 text-white text-lg hover:bg-rose-500"
+          >
+            CHEAT
+          </button>
+        </div>
+
+        <div
+          id="gameFeedback"
+          class="h-16 flex items-center justify-center font-bold text-xl text-blue-700 italic"
+        ></div>
+
+        <div id="postGameMsg" class="hidden animate-bounce pt-4">
+          <button
+            onclick="nextScene()"
+            class="btn-game bg-yellow-400 px-10 py-3 text-lg"
+          >
+            Who are these people? →
+          </button>
+        </div>
+      </div>
+
+      <!-- SCENE 3: Meet the Characters -->
+      <div id="scene-2" class="scene space-y-8">
+        <h2 class="text-3xl font-black text-center uppercase tracking-tight">
+          The Cast
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card p-5 border-l-[12px] border-l-blue-500">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-3xl">🐱</span>
+              <h3 class="font-black text-xl">COPYCAT</h3>
+            </div>
+            <p class="text-sm leading-relaxed text-gray-600 font-medium">
+              Hello! I start with Cooperate, and afterwards, I just copy
+              whatever you did in the last round.
+              <span class="italic text-blue-500">Meow!</span>
+            </p>
+          </div>
+          <div class="card p-5 border-l-[12px] border-l-rose-500">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-3xl">😈</span>
+              <h3 class="font-black text-xl text-rose-600">ALWAYS CHEAT</h3>
+            </div>
+            <p class="text-sm leading-relaxed text-gray-600 font-medium">
+              the strong shall eat the weak. I never cooperate. Ever.
+            </p>
+          </div>
+          <div class="card p-5 border-l-[12px] border-l-emerald-500">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-3xl">👼</span>
+              <h3 class="font-black text-xl text-emerald-600">ALWAYS COOP</h3>
+            </div>
+            <p class="text-sm leading-relaxed text-gray-600 font-medium">
+              Let's all be friends! I believe everyone is good at heart, no
+              matter how many times I'm cheated.
+            </p>
+          </div>
+          <div class="card p-5 border-l-[12px] border-l-purple-500">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-3xl">🎩</span>
+              <h3 class="font-black text-xl text-purple-600">GRUDGER</h3>
+            </div>
+            <p class="text-sm leading-relaxed text-gray-600 font-medium">
+              I'll play nice... but if you cheat me even ONCE, I will cheat you
+              back until the end of time.
+            </p>
+          </div>
+        </div>
+        <div class="text-center pt-6">
+          <button
+            onclick="nextScene()"
+            class="btn-game bg-black text-white px-12 py-4 text-xl"
+          >
+            Start the Tournament
+          </button>
+        </div>
+      </div>
+
+      <!-- SCENE 4: Tournament Simulation -->
+      <div id="scene-3" class="scene space-y-8">
+        <div class="text-center space-y-2">
+          <h2 class="text-3xl font-black uppercase tracking-tight">
+            Evolutionary Battle
+          </h2>
+          <p class="text-gray-500 italic">
+            Losers are replaced by winners. Watch the ratios change.
+          </p>
+        </div>
+
+        <div id="tournamentStats" class="space-y-4 py-4 bg-white p-6 card">
+          <!-- Bars will be rendered here -->
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <button
+            id="stepTournamentBtn"
+            onclick="stepTournament()"
+            class="btn-game bg-white px-8 py-3"
+          >
+            Next Generation
+          </button>
+          <button
+            id="autoTournamentBtn"
+            onclick="toggleAutoTournament()"
+            class="btn-game bg-blue-600 text-white px-8 py-3"
+          >
+            Auto-Simulate
+          </button>
+        </div>
+
+        <div class="text-center">
+          <span
+            id="genCounter"
+            class="bg-black text-white px-4 py-1 rounded font-mono text-sm"
+            >Gen: 0</span
+          >
+        </div>
+
+        <div class="pt-10 border-t-4 border-black border-dashed">
+          <button
+            onclick="nextScene()"
+            class="btn-game bg-yellow-400 px-6 py-3 w-full text-lg"
+          >
+            The Final Sandbox →
+          </button>
+        </div>
+      </div>
+
+      <!-- SCENE 5: The Lesson -->
+      <div id="scene-4" class="scene text-center space-y-8">
+        <h2
+          class="text-4xl font-black italic hand-drawn underline decoration-yellow-400 underline-offset-8"
+        >
+          THE TAKEAWAY
+        </h2>
+        <div class="space-y-6 text-left max-w-lg mx-auto">
+          <div class="card p-4 flex gap-5 items-center hover:bg-blue-50">
+            <div class="text-4xl">🤝</div>
+            <div class="text-sm font-semibold">
+              REPEAT INTERACTIONS are required for trust to form.
+            </div>
+          </div>
+          <div class="card p-4 flex gap-5 items-center hover:bg-emerald-50">
+            <div class="text-4xl">⚖️</div>
+            <div class="text-sm font-semibold">
+              POSSIBLE WIN-WINS (non-zero-sum) must be present.
+            </div>
+          </div>
+          <div class="card p-4 flex gap-5 items-center hover:bg-rose-50">
+            <div class="text-4xl">🧠</div>
+            <div class="text-sm font-semibold">
+              LOW MISCOMMUNICATION ensures trust doesn't spiral into revenge.
+            </div>
+          </div>
+        </div>
+        <button
+          onclick="nextScene()"
+          class="btn-game bg-black text-white px-12 py-4 text-xl"
+        >
+          Try the Sandbox
+        </button>
+      </div>
+
+      <!-- SCENE 6: Sandbox -->
+      <div id="scene-5" class="scene space-y-8">
+        <h2 class="text-3xl font-black text-center uppercase tracking-tight">
+          Sandbox Mode
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <!-- Controls -->
+          <div class="space-y-6">
+            <div class="space-y-4">
+              <h3
+                class="text-xs font-black uppercase tracking-widest text-gray-400"
+              >
+                Rules of the Game
+              </h3>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-1">
+                  <label class="text-[10px] font-bold uppercase text-gray-500"
+                    >Both Coop</label
+                  >
+                  <input
+                    type="number"
+                    id="payoffCC"
+                    value="2"
+                    class="w-full border-2 border-black p-2 font-bold rounded focus:bg-emerald-50 outline-none"
+                  />
+                </div>
+                <div class="space-y-1">
+                  <label class="text-[10px] font-bold uppercase text-gray-500"
+                    >Both Cheat</label
+                  >
+                  <input
+                    type="number"
+                    id="payoffDD"
+                    value="0"
+                    class="w-full border-2 border-black p-2 font-bold rounded focus:bg-rose-50 outline-none"
+                  />
+                </div>
+                <div class="space-y-1">
+                  <label class="text-[10px] font-bold uppercase text-gray-500"
+                    >You Cheat / Them Coop</label
+                  >
+                  <input
+                    type="number"
+                    id="payoffDC"
+                    value="3"
+                    class="w-full border-2 border-black p-2 font-bold rounded focus:bg-emerald-50 outline-none"
+                  />
+                </div>
+                <div class="space-y-1">
+                  <label class="text-[10px] font-bold uppercase text-gray-500"
+                    >You Coop / Them Cheat</label
+                  >
+                  <input
+                    type="number"
+                    id="payoffCD"
+                    value="-1"
+                    class="w-full border-2 border-black p-2 font-bold rounded focus:bg-rose-50 outline-none"
+                  />
+                </div>
+              </div>
+            </div>
+            <button
+              onclick="resetTournament()"
+              class="btn-game bg-rose-50 text-rose-600 border-rose-600 w-full py-3"
+            >
+              Reset Population
+            </button>
+          </div>
+
+          <!-- Simulation Visual -->
+          <div id="sandboxStats" class="space-y-4 p-6 card bg-white">
+            <!-- Progress bars -->
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-6 pt-4">
+          <button
+            onclick="stepTournament()"
+            class="btn-game bg-white px-8 py-3"
+          >
+            Step Gen
+          </button>
+          <button
+            onclick="toggleAutoTournament()"
+            id="sandboxAutoBtn"
+            class="btn-game bg-blue-600 text-white px-10 py-3 text-lg"
+          >
+            Play Simulation
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // --- GAME STATE ---
+      let currentScene = 0;
+      const totalScenes = 6;
+
+      // 1v1 Game State
+      let playerCoins = 0;
+      let oppCoins = 0;
+      let roundsPlayed = 0;
+      let lastPlayerMove = null;
+      let lastOppMove = null;
+      let opponentStrategy = "copycat";
+
+      // Tournament State
+      let generation = 0;
+      let isAutoPlaying = false;
+      let population = {
+        copycat: 5,
+        cheat: 5,
+        cooperate: 5,
+        grudger: 5,
+        detective: 5,
+      };
+      const colors = {
+        copycat: "#3b82f6",
+        cheat: "#f43f5e",
+        cooperate: "#10b981",
+        grudger: "#8b5cf6",
+        detective: "#f59e0b",
+      };
+      const icons = {
+        copycat: "🐱",
+        cheat: "😈",
+        cooperate: "👼",
+        grudger: "🎩",
+        detective: "🕵️",
+      };
+
+      // --- NAVIGATION ---
+      function updateScene() {
+        document.querySelectorAll(".scene").forEach((s, idx) => {
+          s.classList.toggle("active", idx === currentScene);
+        });
+        document.getElementById("sceneProgress").innerText = `Page ${
+          currentScene + 1
+        } / ${totalScenes}`;
+        document.getElementById("prevBtn").disabled = currentScene === 0;
+        document.getElementById("nextBtn").disabled =
+          currentScene === totalScenes - 1;
+
+        if (currentScene === 3 || currentScene === 5) {
+          renderTournament();
+        }
+      }
+
+      function nextScene() {
+        if (currentScene < totalScenes - 1) {
+          currentScene++;
+          updateScene();
+        }
+      }
+
+      function prevScene() {
+        if (currentScene > 0) {
+          currentScene--;
+          updateScene();
+        }
+      }
+
+      // --- 1V1 LOGIC ---
+      function playTurn(move) {
+        if (roundsPlayed >= 5) return;
+
+        let oppMove = "cooperate";
+        if (opponentStrategy === "copycat") {
+          oppMove = roundsPlayed === 0 ? "cooperate" : lastPlayerMove;
+        }
+
+        // Calculation
+        if (move === "cooperate" && oppMove === "cooperate") {
+          playerCoins += 2;
+          oppCoins += 2;
+          showFeedback(
+            "BOTH COOPERATED! <span class='text-emerald-500'>+2 EACH</span>"
+          );
+        } else if (move === "cheat" && oppMove === "cooperate") {
+          playerCoins += 3;
+          oppCoins -= 1;
+          showFeedback(
+            "YOU CHEATED! <span class='text-blue-600'>YOU:+3</span> <span class='text-rose-500'>THEM:-1</span>"
+          );
+        } else if (move === "cooperate" && oppMove === "cheat") {
+          playerCoins -= 1;
+          oppCoins += 3;
+          showFeedback(
+            "YOU WERE CHEATED! <span class='text-rose-500'>YOU:-1</span> <span class='text-blue-600'>THEM:+3</span>"
+          );
+        } else {
+          showFeedback(
+            "BOTH CHEATED. <span class='text-gray-400'>0 COINS</span>"
+          );
+        }
+
+        lastPlayerMove = move;
+        lastOppMove = oppMove;
+        roundsPlayed++;
+
+        updateScores();
+
+        if (roundsPlayed === 5) {
+          document.getElementById("gameControls").classList.add("hidden");
+          document.getElementById("postGameMsg").classList.remove("hidden");
+        }
+      }
+
+      function showFeedback(msg) {
+        document.getElementById("gameFeedback").innerHTML = msg;
+      }
+
+      function updateScores() {
+        const ps = document.getElementById("playerScore");
+        const os = document.getElementById("opponentScore");
+        ps.innerText = playerCoins;
+        os.innerText = oppCoins;
+        // Pop effect
+        ps.classList.add("scale-110");
+        os.classList.add("scale-110");
+        setTimeout(() => {
+          ps.classList.remove("scale-110");
+          os.classList.remove("scale-110");
+        }, 100);
+      }
+
+      // --- TOURNAMENT LOGIC ---
+      function stepTournament() {
+        let scores = {};
+        const types = Object.keys(population);
+        types.forEach((t) => (scores[t] = 0));
+
+        for (let i = 0; i < types.length; i++) {
+          for (let j = 0; j < types.length; j++) {
+            const t1 = types[i];
+            const t2 = types[j];
+            const count1 = population[t1];
+            const count2 = population[t2];
+            if (count1 <= 0 || count2 <= 0) continue;
+
+            let roundScore = getInteractionScore(t1, t2);
+            scores[t1] += roundScore.s1 * count2;
+            scores[t2] += roundScore.s2 * count1;
+          }
+        }
+
+        let sorted = types.slice().sort((a, b) => scores[a] - scores[b]);
+        let loser = sorted.find((t) => population[t] > 0);
+        let winner = sorted.reverse().find((t) => population[t] > 0);
+
+        if (loser && winner && loser !== winner) {
+          population[loser]--;
+          population[winner]++;
+        }
+
+        generation++;
+        document.getElementById("genCounter").innerText = `Gen: ${generation}`;
+        renderTournament();
+      }
+
+      function getInteractionScore(t1, t2) {
+        const pCC = parseInt(document.getElementById("payoffCC")?.value || 2);
+        const pDD = parseInt(document.getElementById("payoffDD")?.value || 0);
+        const pDC = parseInt(document.getElementById("payoffDC")?.value || 3);
+        const pCD = parseInt(document.getElementById("payoffCD")?.value || -1);
+
+        if (t1 === "cheat") {
+          return t2 === "cheat" ? { s1: pDD, s2: pDD } : { s1: pDC, s2: pCD };
+        }
+        if (t1 === "cooperate") {
+          return t2 === "cheat" ? { s1: pCD, s2: pDC } : { s1: pCC, s2: pCC };
+        }
+        if (t1 === "copycat") {
+          if (t2 === "cheat") return { s1: pCD + pDD * 4, s2: pDC + pDD * 4 };
+          return { s1: pCC * 5, s2: pCC * 5 };
+        }
+        return { s1: pCC, s2: pCC };
+      }
+
+      function renderTournament() {
+        const container =
+          currentScene === 5
+            ? document.getElementById("sandboxStats")
+            : document.getElementById("tournamentStats");
+        if (!container) return;
+
+        container.innerHTML = "";
+        const total = Object.values(population).reduce((a, b) => a + b, 0);
+
+        Object.entries(population).forEach(([type, count]) => {
+          const perc = (count / total) * 100;
+          const div = document.createElement("div");
+          div.className = "space-y-1";
+          div.innerHTML = `
+                    <div class="flex justify-between text-[10px] font-black tracking-widest uppercase text-gray-400">
+                        <span>${icons[type]} ${type}</span>
+                        <span>${count}</span>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" style="width: ${perc}%; background-color: ${colors[type]}; box-shadow: inset -4px 0 0 rgba(0,0,0,0.1)"></div>
+                    </div>
+                `;
+          container.appendChild(div);
+        });
+      }
+
+      let autoInterval;
+      function toggleAutoTournament() {
+        isAutoPlaying = !isAutoPlaying;
+        const btn =
+          currentScene === 5
+            ? document.getElementById("sandboxAutoBtn")
+            : document.getElementById("autoTournamentBtn");
+        btn.innerText = isAutoPlaying ? "PAUSE SIM" : "PLAY SIM";
+        btn.classList.toggle("bg-blue-600");
+        btn.classList.toggle("bg-orange-500");
+
+        if (isAutoPlaying) {
+          autoInterval = setInterval(stepTournament, 150);
+        } else {
+          clearInterval(autoInterval);
+        }
+      }
+
+      function resetTournament() {
+        population = {
+          copycat: 5,
+          cheat: 5,
+          cooperate: 5,
+          grudger: 5,
+          detective: 5,
+        };
+        generation = 0;
+        document.getElementById("genCounter").innerText = `Gen: 0`;
+        renderTournament();
+      }
+
+      // Initialize
+      updateScene();
+    </script>
+  </body>
+</html>

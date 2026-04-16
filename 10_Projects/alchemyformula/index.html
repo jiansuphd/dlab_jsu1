@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Alchemy Formula | Artifact Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ut-orange: #ff8200;
+        --smokey-charcoal: #333333;
+        --inst-navy: #002c4d;
+        --neutral-bg: #f8faf8;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--neutral-bg);
+        color: var(--smokey-charcoal);
+        padding: 20px;
+      }
+
+      .editorial-card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+        max-width: 1000px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Merriweather", serif;
+      }
+
+      .masthead {
+        background-color: var(--inst-navy);
+        color: white;
+        padding: 30px;
+        border-bottom: 5px solid var(--ut-orange);
+      }
+
+      .component-label {
+        font-size: 0.65rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ut-orange);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .input-field {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        transition: border-color 0.2s;
+        background-color: white;
+      }
+
+      .input-field:focus {
+        outline: none;
+        border-color: var(--ut-orange);
+        ring: 2px solid var(--ut-orange);
+      }
+
+      .spell-output {
+        background-color: #f1f5f9;
+        border-left: 4px solid var(--ut-orange);
+        padding: 30px;
+        font-family: "Merriweather", serif;
+        font-style: italic;
+        line-height: 1.6;
+        position: relative;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--smokey-charcoal);
+        color: white;
+        font-size: 0.6rem;
+        font-weight: 700;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .copy-btn:hover {
+        background: var(--ut-orange);
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="editorial-card fade-in">
+      <!-- Header -->
+      <header class="masthead">
+        <div class="flex justify-between items-center mb-2">
+          <span
+            class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-80"
+            >Phase 05: The Artifact Brew</span
+          >
+          <span
+            class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-80"
+            >Instructional Design Toolkit</span
+          >
+        </div>
+        <h1 class="text-3xl md:text-4xl font-black">The Alchemy Formula</h1>
+        <p class="text-sm opacity-90 mt-2 font-light italic">
+          Fill in the components below to assemble your agentic spell.
+        </p>
+      </header>
+
+      <div class="p-8 md:p-12">
+        <!-- Inputs Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div>
+            <label class="component-label">Educational Discipline</label>
+            <input
+              type="text"
+              id="discipline"
+              class="input-field"
+              placeholder="e.g. Veterinary Medicine"
+              oninput="updateSpell()"
+            />
+          </div>
+
+          <div>
+            <label class="component-label">Student Level</label>
+            <select id="level" class="input-field" onchange="updateSpell()">
+              <option value="Undergraduate">Undergraduate</option>
+              <option value="Graduate/Professional">
+                Graduate/Professional
+              </option>
+              <option value="Clinical Rotation">Clinical Rotation</option>
+              <option value="Non-Credit">Non-Credit</option>
+            </select>
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="component-label">Specific Topic</label>
+            <input
+              type="text"
+              id="topic"
+              class="input-field"
+              placeholder="e.g. Identifying Canine Heart Murmurs"
+              oninput="updateSpell()"
+            />
+          </div>
+
+          <div>
+            <label class="component-label">Artifact Type</label>
+            <select id="type" class="input-field" onchange="updateSpell()">
+              <option value="Interactive Quiz">Interactive Quiz</option>
+              <option value="Branching Scenario">Branching Scenario</option>
+              <option value="Mini-game">Mini-game</option>
+              <option value="Diagnostic Simulation">
+                Diagnostic Simulation
+              </option>
+              <option value="Interactive Case Study">
+                Interactive Case Study
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label class="component-label">Difficulty Modifier</label>
+            <select id="modifier" class="input-field" onchange="updateSpell()">
+              <option value="Mystery">Mystery (Deduction focus)</option>
+              <option value="Timed">Timed (Pressure focus)</option>
+              <option value="Role Play">Role Play (Identity focus)</option>
+              <option value="Competitive">Competitive (Score focus)</option>
+              <option value="Collaborative">Collaborative (Peer focus)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="component-label">Primary Constraint</label>
+            <select
+              id="constraint1"
+              class="input-field"
+              onchange="updateSpell()"
+            >
+              <option value="Step-by-step layout">Step-by-step layout</option>
+              <option value="Plain language instructions">
+                Plain language instructions
+              </option>
+              <option value="Short, punchy interactions">
+                Short, punchy interactions
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label class="component-label">Visual Constraint</label>
+            <select
+              id="constraint2"
+              class="input-field"
+              onchange="updateSpell()"
+            >
+              <option value="High Contrast Colors">High Contrast Colors</option>
+              <option value="Large Typography">Large Typography</option>
+              <option value="Mobile-First Responsive">
+                Mobile-First Responsive
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Output Section -->
+        <div class="mt-12">
+          <h3
+            class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-800"
+          >
+            <span class="text-orange-500">✨</span> The Resulting Spell (Your
+            Prompt)
+          </h3>
+          <div class="spell-output" id="spell-box">
+            <button class="copy-btn" onclick="copySpell()">Copy Spell</button>
+            <p id="prompt-text">
+              Assemble the components above to generate your prompt...
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <footer
+        class="bg-slate-50 p-6 text-center text-[11px] font-bold text-slate-400 uppercase tracking-widest border-t border-slate-100"
+      >
+        UT Symposium 2026 // Digital Learning Live Build
+      </footer>
+    </div>
+
+    <script>
+      function updateSpell() {
+        const discipline =
+          document.getElementById("discipline").value || "[Discipline]";
+        const level = document.getElementById("level").value;
+        const topic = document.getElementById("topic").value || "[Topic]";
+        const type = document.getElementById("type").value;
+        const modifier = document.getElementById("modifier").value;
+        const c1 = document.getElementById("constraint1").value;
+        const c2 = document.getElementById("constraint2").value;
+
+        const prompt = `Act as a specialized Instructional Designer and Frontend Developer. Build a single-file HTML/JS learning artifact designed for **${level} students** in the field of **${discipline}** studying **${topic}**. <br><br>
+
+            **The Core Mechanic:** Create a **'${modifier}' ${type}**. Ensure the interaction requires students to apply logic rather than just recalling facts.<br><br>
+
+            **The Design Logic:**<br>
+            - Use a **${c1}**: Ensure the pedagogical flow is intuitive and accessible.<br>
+            - **Visual Style:** Use a **${c2}** theme for professional delivery.<br>
+            - **Tone:** Technical but clear, prioritizing student engagement.<br><br>
+
+            **Technical Requirement:** Output this as one single HTML file containing all CSS and Javascript so it can be pasted into an Articulate Rise Code Block.`;
+
+        document.getElementById("prompt-text").innerHTML = prompt;
+      }
+
+      function copySpell() {
+        const text = document.getElementById("prompt-text").innerText;
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+
+        const btn = document.querySelector(".copy-btn");
+        btn.innerText = "COPIED!";
+        btn.style.background = "#FF8200";
+        setTimeout(() => {
+          btn.innerText = "COPY SPELL";
+          btn.style.background = "";
+        }, 2000);
+      }
+
+      // Initialize
+      window.onload = updateSpell;
+    </script>
+  </body>
+</html>

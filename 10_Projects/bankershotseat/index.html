@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AREC 342: The Banker's Hot Seat - Simulation Pro</title>
+    <!-- Tailwind CSS for layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Premium Typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ut-orange: #ff8200;
+        --ut-brown: #8a4700;
+        --sim-bg: #0f172a;
+        --card-bg: rgba(30, 41, 59, 0.7);
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--sim-bg);
+        background-image: radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 130, 0, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(138, 71, 0, 0.1) 0%,
+            transparent 50%
+          );
+        color: #f8fafc;
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      /* Glassmorphism Effect */
+      .glass {
+        background: var(--card-bg);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .btn-primary {
+        background-color: var(--ut-orange);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 800;
+      }
+
+      .btn-primary:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(255, 130, 0, 0.4);
+        filter: brightness(1.1);
+      }
+
+      .progress-transition {
+        transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+
+      /* Scanning line effect for the HUD "Vibe" */
+      .scanline {
+        width: 100%;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        position: absolute;
+        animation: scan 4s linear infinite;
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      @keyframes scan {
+        0% {
+          top: 0;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+
+      .farm-bg {
+        background-image: linear-gradient(
+            rgba(15, 23, 42, 0.7),
+            rgba(15, 23, 42, 0.9)
+          ),
+          url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2000");
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Animation for phase changes */
+      .animate-slide {
+        animation: slideIn 0.5s ease-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex items-center justify-center p-4">
+    <div
+      id="game-container"
+      class="w-full max-w-5xl shadow-2xl rounded-2xl overflow-hidden"
+    >
+      <!-- TOP TELEMETRY HUD -->
+      <div
+        class="glass p-4 flex flex-wrap justify-between items-center border-b border-white/10 relative overflow-hidden"
+      >
+        <div class="scanline"></div>
+        <div class="flex items-center gap-4 relative z-20">
+          <div
+            class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center border border-orange-500/40"
+          >
+            <span class="text-orange-500 font-black">AREC</span>
+          </div>
+          <div>
+            <h1 class="text-sm font-black uppercase tracking-widest text-white">
+              Simulation Engine v4.0
+            </h1>
+            <div class="flex gap-2 items-center">
+              <span
+                class="w-2 h-2 rounded-full bg-green-500 animate-pulse"
+              ></span>
+              <span class="text-[10px] mono text-green-500 uppercase"
+                >Live Feed // Hot Seat Protocol</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-8 items-center relative z-20">
+          <!-- Credibility Display -->
+          <div class="hidden md:block">
+            <div class="flex justify-between items-end mb-1">
+              <span class="text-[10px] font-bold uppercase text-stone-400"
+                >Credibility Index</span
+              >
+              <span
+                id="credibility-value"
+                class="text-xs mono text-orange-400 font-bold"
+                >70%</span
+              >
+            </div>
+            <div
+              class="w-48 bg-white/5 rounded-full h-1.5 overflow-hidden border border-white/10"
+            >
+              <div
+                id="credibility-bar"
+                class="bg-orange-500 h-full progress-transition"
+                style="width: 70%"
+              ></div>
+            </div>
+          </div>
+          <!-- Session Stats -->
+          <div class="text-right">
+            <span class="block text-[10px] text-stone-400 uppercase font-bold"
+              >Projected Capital</span
+            >
+            <span class="text-xl font-bold mono text-white">$250,000.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN SIMULATION STAGE -->
+      <main
+        id="stage"
+        class="glass min-h-[600px] flex flex-col relative overflow-hidden"
+      >
+        <!-- Content injected via JavaScript -->
+      </main>
+
+      <!-- FOOTER STATUS BAR -->
+      <div class="glass p-3 border-t border-white/10 flex justify-between px-6">
+        <p
+          class="text-[9px] text-stone-500 uppercase font-bold tracking-[0.3em]"
+        >
+          System.Auth // UTK Digital Learning
+        </p>
+        <p
+          class="text-[9px] text-stone-500 uppercase font-bold tracking-[0.3em]"
+        >
+          Module 9.4 Final Phase
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // State Management
+      const state = {
+        phase: "intro",
+        credibility: 70,
+        selectedData: [],
+        dialogueIndex: 0,
+        feedback: [],
+      };
+
+      const dataPoints = [
+        {
+          id: "nfi",
+          label: "Net Farm Income",
+          value: "$84,200",
+          desc: "Actual profitability after expenses.",
+        },
+        {
+          id: "rev",
+          label: "Total Revenue",
+          value: "$450,000",
+          desc: "Gross sales (Total cash in).",
+        },
+        {
+          id: "cur",
+          label: "Current Ratio",
+          value: "1.8",
+          desc: "Short-term liquidity health.",
+        },
+        {
+          id: "sol",
+          label: "Debt-to-Asset Ratio",
+          value: "0.42",
+          desc: "Long-term solvency measure.",
+        },
+        {
+          id: "inventory",
+          label: "Machinery List",
+          value: "14 Units",
+          desc: "Physical equipment inventory.",
+        },
+      ];
+
+      const dialogueTree = [
+        {
+          text: "I see your Debt-to-Asset ratio is sitting at 0.42. That's higher than what we typically like for a fleet expansion. Why should I risk the bank's capital on your farm?",
+          options: [
+            {
+              text: "My Net Farm Income has grown 12% YOY, showing we generate the cash to service this debt.",
+              impact: 15,
+              feedback:
+                "Strategic Win: You prioritized profitability (NFI) to offset debt (Solvency) concerns.",
+            },
+            {
+              text: "Look at my equipment list; the new combine is essential for a faster harvest.",
+              impact: -15,
+              feedback:
+                "Critical Error: You used emotional/tactical reasoning instead of addressing the financial risk.",
+            },
+          ],
+        },
+      ];
+
+      // Core Functions
+      const updateHUD = () => {
+        const bar = document.getElementById("credibility-bar");
+        const val = document.getElementById("credibility-value");
+        if (bar && val) {
+          bar.style.width = `${Math.min(100, Math.max(0, state.credibility))}%`;
+          val.innerText = `${Math.min(100, Math.max(0, state.credibility))}%`;
+          if (state.credibility < 40) bar.style.backgroundColor = "#ef4444";
+          else bar.style.backgroundColor = "#FF8200";
+        }
+      };
+
+      const toggleDataPoint = (id) => {
+        if (state.selectedData.includes(id)) {
+          state.selectedData = state.selectedData.filter((i) => i !== id);
+        } else if (state.selectedData.length < 3) {
+          state.selectedData.push(id);
+        }
+        render();
+      };
+
+      const startNegotiation = () => {
+        state.feedback = [];
+
+        // Logic Check 1: Revenue vs NFI
+        if (
+          state.selectedData.includes("rev") &&
+          !state.selectedData.includes("nfi")
+        ) {
+          state.credibility -= 10;
+          state.feedback.push(
+            "Analyst Note: Total Revenue does not equate to repayment ability. Choosing this over NFI weakened your case."
+          );
+        } else if (state.selectedData.includes("nfi")) {
+          state.credibility += 10;
+          state.feedback.push(
+            "Good Prep: Net Farm Income is the gold standard for repayment capacity."
+          );
+        }
+
+        // Logic Check 2: Current Ratio (Liquidity)
+        if (state.selectedData.includes("cur")) {
+          state.credibility += 5;
+          state.feedback.push(
+            "Safe Play: Showing a strong Current Ratio (1.8) proved you can handle immediate bills."
+          );
+        }
+
+        state.phase = "negotiation";
+        updateHUD();
+        render();
+      };
+
+      const chooseOption = (idx) => {
+        const opt = dialogueTree[state.dialogueIndex].options[idx];
+        state.credibility += opt.impact;
+        state.feedback.push(opt.feedback);
+        state.phase = "result";
+        updateHUD();
+        render();
+      };
+
+      const goToPhase = (p) => {
+        state.phase = p;
+        render();
+      };
+
+      const render = () => {
+        const stage = document.getElementById("stage");
+        stage.innerHTML = "";
+        stage.className =
+          "glass min-h-[600px] flex flex-col relative overflow-hidden";
+
+        if (state.phase === "intro") {
+          stage.classList.add("farm-bg");
+          stage.innerHTML = `
+                    <div class="flex-1 flex flex-col items-center justify-center p-12 text-center animate-slide">
+                        <div class="mb-8 relative">
+                             <div class="absolute -inset-4 bg-orange-500/20 blur-xl rounded-full"></div>
+                             <div class="w-24 h-24 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center text-4xl relative">🚜</div>
+                        </div>
+                        <h2 class="text-4xl font-black mb-4 tracking-tighter uppercase italic">The Banker's Hot Seat</h2>
+                        <p class="text-stone-300 max-w-xl mb-10 leading-relaxed font-medium">
+                            Goal: Secure <span class="text-white font-bold">$250,000</span> for equipment financing. 
+                            The analyst will examine your telemetry for inconsistencies.
+                            <span class="text-orange-400 block mt-2 text-sm uppercase tracking-widest font-bold">System Status: Ready</span>
+                        </p>
+                        <button onclick="goToPhase('folder')" class="btn-primary text-white px-12 py-4 rounded-xl shadow-2xl">
+                            Begin Interview
+                        </button>
+                    </div>
+                `;
+        } else if (state.phase === "folder") {
+          stage.innerHTML = `
+                    <div class="flex-1 p-10 flex flex-col">
+                        <div class="mb-8">
+                            <h2 class="text-2xl font-black uppercase tracking-tight italic">Step 01: Folder Selection</h2>
+                            <p class="text-stone-400 text-sm">Select <span class="text-white font-bold">three</span> indices from your farm's records to present as evidence.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
+                            ${dataPoints
+                              .map(
+                                (dp) => `
+                                <button onclick="toggleDataPoint('${dp.id}')" 
+                                    class="p-5 border-l-4 rounded-r-xl text-left transition-all relative overflow-hidden group ${
+                                      state.selectedData.includes(dp.id)
+                                        ? "border-orange-500 bg-orange-500/10"
+                                        : "border-white/10 bg-white/5 hover:bg-white/10"
+                                    }">
+                                    <div class="absolute top-0 right-0 p-2 text-[8px] mono text-white/20 font-bold uppercase tracking-widest">DTA_SRC_${
+                                      dp.id
+                                    }</div>
+                                    <div class="text-stone-400 text-[10px] uppercase font-black mb-1">${
+                                      dp.label
+                                    }</div>
+                                    <div class="text-2xl font-black mono text-white mb-1">${
+                                      dp.value
+                                    }</div>
+                                    <div class="text-[10px] text-stone-500">${
+                                      dp.desc
+                                    }</div>
+                                    ${
+                                      state.selectedData.includes(dp.id)
+                                        ? '<div class="absolute bottom-2 right-4 text-orange-500 font-black text-[10px] tracking-widest">SELECTED</div>'
+                                        : ""
+                                    }
+                                </button>
+                            `
+                              )
+                              .join("")}
+                        </div>
+                        <div class="mt-8 flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10">
+                            <span class="text-xs font-bold text-stone-400 uppercase">Package: ${
+                              state.selectedData.length
+                            } / 3</span>
+                            <button onclick="startNegotiation()" class="btn-primary text-white px-8 py-3 rounded-lg text-xs disabled:opacity-20 disabled:cursor-not-allowed" ${
+                              state.selectedData.length !== 3 ? "disabled" : ""
+                            }>
+                                Push to Desk
+                            </button>
+                        </div>
+                    </div>
+                `;
+        } else if (state.phase === "negotiation") {
+          const currentDialogue = dialogueTree[state.dialogueIndex];
+          stage.innerHTML = `
+                    <div class="flex flex-col md:flex-row flex-1">
+                        <!-- ANALYST HUD -->
+                        <div class="w-full md:w-80 bg-black/30 p-8 border-r border-white/10 flex flex-col items-center">
+                            <div class="relative mb-6">
+                                <div class="absolute -inset-1 bg-gradient-to-tr from-orange-500 to-transparent blur opacity-50"></div>
+                                <div class="w-32 h-32 bg-stone-800 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl relative">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=banker&backgroundColor=1e293b" alt="Banker" />
+                                </div>
+                            </div>
+                            <h3 class="font-black text-lg tracking-tight uppercase">Henderson, R.</h3>
+                            <p class="text-[10px] mono text-orange-500 uppercase font-bold mb-6 italic">Senior Credit Analyst</p>
+                            
+                            <div class="w-full space-y-4">
+                                <div class="p-3 bg-white/5 rounded-lg border border-white/10">
+                                    <span class="block text-[8px] text-stone-500 uppercase font-bold mb-1">Interview Stress</span>
+                                    <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+                                        <div class="bg-blue-500 h-full animate-pulse" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DIALOGUE ENGINE -->
+                        <div class="flex-1 p-10 flex flex-col justify-center animate-slide">
+                            <div class="mb-12">
+                                <div class="text-[10px] mono text-stone-500 uppercase mb-4 tracking-[0.3em]">Audio Feed Transmitting...</div>
+                                <div class="relative">
+                                    <div class="absolute -left-4 top-0 w-1 h-full bg-orange-500"></div>
+                                    <p class="text-2xl font-bold leading-tight italic">"${
+                                      currentDialogue.text
+                                    }"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                ${currentDialogue.options
+                                  .map(
+                                    (opt, idx) => `
+                                    <button onclick="chooseOption(${idx})" class="w-full group text-left p-5 glass rounded-xl border-white/5 hover:border-orange-500 hover:bg-orange-500/10 transition-all flex items-center justify-between">
+                                        <span class="text-sm font-bold text-stone-300 group-hover:text-white">${opt.text}</span>
+                                        <span class="text-stone-600 group-hover:text-orange-500 font-black">>></span>
+                                    </button>
+                                `
+                                  )
+                                  .join("")}
+                            </div>
+                        </div>
+                    </div>
+                `;
+        } else if (state.phase === "result") {
+          const isSuccess = state.credibility > 50;
+          stage.innerHTML = `
+                    <div class="flex-1 p-12 flex flex-col items-center justify-center animate-slide">
+                        <div class="w-full max-w-2xl bg-black/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="p-4 bg-white/5 border-b border-white/10 flex justify-between">
+                                <span class="text-[10px] font-black uppercase tracking-widest">End Session Report</span>
+                                <span class="text-[10px] mono ${
+                                  isSuccess ? "text-green-500" : "text-red-500"
+                                }">SIM_STATUS: ${
+            isSuccess ? "AUTHORIZED" : "DENIED"
+          }</span>
+                            </div>
+                            <div class="p-10 text-center">
+                                <h2 class="text-5xl font-black mb-8 italic tracking-tighter uppercase ${
+                                  isSuccess ? "text-green-400" : "text-red-500"
+                                }">
+                                    ${
+                                      isSuccess
+                                        ? "Financing Secured"
+                                        : "Application Denied"
+                                    }
+                                </h2>
+                                
+                                <div class="text-left space-y-3 mb-10">
+                                    <p class="text-[10px] text-stone-500 uppercase font-black tracking-widest">Performance Logs:</p>
+                                    ${state.feedback
+                                      .map(
+                                        (f) => `
+                                        <div class="flex gap-4 items-start bg-white/5 p-4 rounded-lg border border-white/5">
+                                            <div class="w-1.5 h-1.5 rounded-full mt-1.5 ${
+                                              isSuccess
+                                                ? "bg-green-500"
+                                                : "bg-red-500"
+                                            }"></div>
+                                            <p class="text-xs text-stone-300">${f}</p>
+                                        </div>
+                                    `
+                                      )
+                                      .join("")}
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4 mb-10">
+                                    <div class="p-4 bg-white/5 rounded-xl text-left border border-white/5">
+                                        <span class="block text-[8px] text-stone-500 uppercase font-bold">Credibility Final</span>
+                                        <span class="text-2xl font-bold mono text-white">${
+                                          state.credibility
+                                        }%</span>
+                                    </div>
+                                    <div class="p-4 bg-white/5 rounded-xl text-left border border-white/5">
+                                        <span class="block text-[8px] text-stone-500 uppercase font-bold">Funding Result</span>
+                                        <span class="text-2xl font-bold mono text-white">${
+                                          isSuccess ? "$250K" : "$0"
+                                        }</span>
+                                    </div>
+                                </div>
+
+                                <button onclick="location.reload()" class="btn-primary text-white px-10 py-4 rounded-xl text-xs">
+                                    Re-initialize Simulation
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+        }
+      };
+
+      // Initial Start
+      window.onload = render;
+    </script>
+  </body>
+</html>
