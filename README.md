@@ -10,7 +10,7 @@ Welcome to my dedicated sandbox for exploring innovative modalities and interact
 
 This environment serves as a dedicated "sandbox" for building, testing, and iterating on interactive simulators. While it starts with a baseline of established lab simulators, I am using this space to expand and integrate my own original **projects, instructional designs, and educational games** over time.
 
-Everything here is maintained using the **"knowledge compiler"** concept — an AI-assisted framework designed to build a compounding, searchable knowledge base directly alongside the source code.
+Everything here is maintained using the **"knowledge compiler"** concept - an AI-assisted framework designed to build a compounding, searchable knowledge base directly alongside the source code.
 
 ## 🗺️ Navigation
 
