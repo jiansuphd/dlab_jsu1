@@ -1,5 +1,14 @@
 # Project Progress Log
 
+## Repository Migration & Configuration Check
+*April 16, 2026*
+
+- Migrated repository to the current location.
+- Verified `.gitignore` configuration for path and pattern accuracy.
+- Confirmed coverage for Obsidian, logs, sensitive data, and environment-specific files.
+
+---
+
 ## Projects MOC Update
 *April 15, 2026*
 
@@ -61,7 +70,7 @@ Created `GEMINI.md` to define the AI's role as wiki maintainer, outlining archit
 
 **2. The Wiki & Initial Ingest:** 
 Established the `wiki/` directory and ingested initial raw sources:
-- `probability_lab.md`: Probability Lab.
+- `probabilitylab.md`: Probability Lab.
 - `bankershotseat.md`: Banker's Hot Seat game.
 - `evolutionoftrust.md`: Evolution of Trust.
 - `emojiworldsimulator.md`: Emoji World Simulator.
@@ -82,7 +91,7 @@ Created `wiki/index.md` as an organized catalog and `wiki/log.md` as a chronolog
 ---
 
 ## Thorough Repository Review & Validation
-*April 15, 2026*
+*April 16, 2026*
 
 Conducted a comprehensive, line-by-line review of the entire repository structure, file formatting, internal links, and backlinks to ensure strict adherence to the "knowledge compiler" architecture.
 
@@ -147,6 +156,18 @@ All GitHub Pages links, MOC files, and corresponding synthesized `20_Wiki` docum
 *April 15, 2026*
 
 - Standardized aliases and naming conventions in `10_Projects_MOC.md`, particularly removing legacy numeric prefixes (e.g., `15_alchemyformula` to `alchemyformula`) to align with the rest of the updated directory structure.
+
+---
+
+## Repository Migration to Personal GitHub Pages
+*April 28, 2026*
+
+- Updated base URL from `special-adventure-4qqpnnn.pages.github.io` to `jiansuphd.github.io/dlab_jsu1/` across all documentation.
+- Updated `README.md` and `00_Meta/README_dlab.md` with new repository and live project links.
+- Integrated live GitHub Pages links into `00_Meta/10_Projects_MOC.md` for direct access.
+- Updated `00_Meta/GEMINI.md` schema to reflect that MOC files are now centrally located in `00_Meta/`.
+- Fixed the `Root_MOC.md` link in the root `README.md` to point to its new path in `00_Meta/`.
+- Audited and verified all internal links and backlink footers for the new directory structure.
 
 ---
 **Backlinks:** [[Root_MOC|Root MOC]]

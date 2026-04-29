@@ -2,6 +2,10 @@
 
 Append-only record of wiki operations.
 
+## [2026-04-16] lint | Migration & .gitignore Audit
+- Validated `.gitignore` after repository migration.
+- Confirmed path-specific and pattern-based ignore rules are correctly implemented.
+
 ## [2026-04-15] ingest | Initial Repository Setup
 - Initialized schema in `GEMINI.md`.
 - Ingested `README.txt` into `readme.md`.
@@ -63,6 +67,11 @@ Append-only record of wiki operations.
 ## [2026-04-15] update | Evolution of Trust Integration
 - Replaced all references to `photosynth1` and Leaf Lab with `evolutionoftrust` and Evolution of Trust across the codebase, MOCs, and wiki pages.
 - Deleted `photosynth1.md` and generated `evolutionoftrust.md` to document the new project.
+
+## [2026-04-28] update | Repository Migration
+- Updated README.md and documentation with the new base URL: https://jiansuphd.github.io/dlab_jsu1/
+- Updated all MOC links and locations in 00_Meta/ to reflect the new repository structure and base URL.
+- Verified internal links and backlinks across the entire wiki.
 
 ---
 **Backlinks:** [[Root_MOC|Root MOC]]

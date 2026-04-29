@@ -1,6 +1,6 @@
 # Probability Lab
 
-**Location:** `10_Projects/probability_lab/`
+**Location:** `10_Projects/probabilitylab/`
 
 ## Overview
 An interactive "Casino of Chance" simulation (Data 101) where users can watch math emerge from chaos. It demonstrates probability distributions and the mathematics of chance through various simulated activities.

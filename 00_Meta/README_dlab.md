@@ -12,9 +12,9 @@ To generate a new page, place a folder containing an `index.html` file into the 
 
 After pushing to GitHub, the Pages site will refresh (which might take around 15 minutes). Once refreshed, that new page will be live at:
 
-`https://special-adventure-4qqpnnn.pages.github.io/<your_folder_name_here>/`
+`https://jiansuphd.github.io/dlab_jsu1/<your_folder_name_here>/`
 
-*(Note: Since the repository has been restructured, folders placed inside `10_Projects/` will follow the path `https://special-adventure-4qqpnnn.pages.github.io/10_Projects/<your_folder_name_here>/`)*
+*(Note: Since the repository has been restructured, folders placed inside `10_Projects/` will follow the path `https://jiansuphd.github.io/dlab_jsu1/10_Projects/<your_folder_name_here>/`)*
 
 ---
 **Backlinks:** [[Root_MOC|Root MOC]], [[20_Wiki_MOC|Wiki MOC]]
