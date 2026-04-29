@@ -32,12 +32,12 @@ Successfully restructured the repository to fully apply the "knowledge compiler"
 
 **1. Directory Structure:**
 - `00_Meta/`: Administrative files, context settings (`progress.md`), and schemas (`GEMINI.md`).
-- `10_Projects/`: Raw codebase sources, cleanly indexed (`probability_lab`, etc.).
+- `10_Projects/`: Raw codebase sources, cleanly indexed (`probabilitylab`, etc.).
 - `20_Wiki/`: LLM-maintained synthesized knowledge base.
 
 **2. Maps of Content (MOCs):**
 Created interconnected navigation hubs:
-- `Root_MOC.md`: Main dashboard connecting core directories.
+- `00_Root_MOC.md`: Main dashboard connecting core directories.
 - `10_Projects/10_Projects_MOC.md`: Overview and links to live `.html` files.
 - `20_Wiki/20_Wiki_MOC.md`: Organized index of LLM-synthesized documentation.
 
@@ -97,11 +97,11 @@ Conducted a comprehensive, line-by-line review of the entire repository structur
 
 **1. Internal Linking & MOC Integrity:**
 - Verified that all internal links across the repository resolve correctly.
-- Ensured `Root_MOC.md`, `10_Projects_MOC.md`, and `20_Wiki_MOC.md` accurately point to their respective contents using standard Obsidian linking syntax.
+- Ensured `00_Root_MOC.md`, `10_Projects_MOC.md`, and `20_Wiki_MOC.md` accurately point to their respective contents using standard Obsidian linking syntax.
 
 **2. Backlinking & Orphan Check:**
 - Confirmed that all files in `20_Wiki` contain a robust `**Backlinks:** [[20_Wiki_MOC|Wiki MOC]]` footer.
-- Confirmed that all files in `00_Meta` contain a `**Backlinks:** [[Root_MOC|Root MOC]]` footer.
+- Confirmed that all files in `00_Meta` contain a `**Backlinks:** [[00_Root_MOC|Root MOC]]` footer.
 - Removed a legacy broken link (`[[99_System/99_Home_MOC|Home MOC]]`) from `00_Meta/llm-wiki.md`.
 - Verified no orphaned files exist within the system.
 
@@ -159,15 +159,14 @@ All GitHub Pages links, MOC files, and corresponding synthesized `20_Wiki` docum
 
 ---
 
-## Repository Migration to Personal GitHub Pages
+## Repository Migration & Knowledge Compiler Lint
 *April 28, 2026*
 
-- Updated base URL from `special-adventure-4qqpnnn.pages.github.io` to `jiansuphd.github.io/dlab_jsu1/` across all documentation.
-- Updated `README.md` and `00_Meta/README_dlab.md` with new repository and live project links.
-- Integrated live GitHub Pages links into `00_Meta/10_Projects_MOC.md` for direct access.
-- Updated `00_Meta/GEMINI.md` schema to reflect that MOC files are now centrally located in `00_Meta/`.
-- Fixed the `Root_MOC.md` link in the root `README.md` to point to its new path in `00_Meta/`.
-- Audited and verified all internal links and backlink footers for the new directory structure.
+- **Base URL Update:** Migrated base URL to `https://jiansuphd.github.io/dlab_jsu1/` across all documentation and MOCs.
+- **Standardization:** Standardized wiki naming convention to flat, lowercase strings (renamed `probability_lab.md` to `probabilitylab.md`).
+- **MOC Restructuring:** Renamed `Root_MOC.md` to `00_Root_MOC.md` and updated all internal references and backlinks.
+- **Conflict Resolution:** Resolved merge conflicts arising from root-level MOC file relocation.
+- **Lint Pass:** Verified all backlink footers, internal MOC links, and external project links. Confirmed no orphaned files or broken references remain.
 
 ---
-**Backlinks:** [[Root_MOC|Root MOC]]
+**Backlinks:** [[00_Root_MOC|Root MOC]]

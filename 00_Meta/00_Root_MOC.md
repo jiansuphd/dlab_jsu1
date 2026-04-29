@@ -1,4 +1,4 @@
-# Root MOC
+# 00 Root MOC
 
 Welcome to the central Map of Content for this repository. This structure is built on the "knowledge compiler" concept.
 
@@ -16,4 +16,4 @@ Welcome to the central Map of Content for this repository. This structure is bui
 - Check out the latest actions in the [[log|Maintenance Log]].
 
 ---
-**Backlinks:** [[Root_MOC|Root MOC]]
+**Backlinks:** [[00_Root_MOC|Root MOC]]

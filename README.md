@@ -16,7 +16,7 @@ Everything here is maintained using the **"knowledge compiler"** concept - an AI
 
 For an interconnected overview and to navigate the repository within Obsidian or any Markdown-friendly editor, please start with our central Map of Content (MOC):
 
-👉 **[Root_MOC.md](00_Meta/Root_MOC.md)**
+👉 **[00_Root_MOC.md](00_Meta/00_Root_MOC.md)**
 
 ## 🌐 Live Interactive Labs
 

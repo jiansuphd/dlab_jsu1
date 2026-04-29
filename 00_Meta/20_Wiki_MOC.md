@@ -11,4 +11,4 @@ A catalog and Map of Content for all synthesized pages in the knowledge base.
 - [[alchemyformula]] - The Alchemy Formula
 
 ---
-**Backlinks:** [[Root_MOC|Root MOC]]
+**Backlinks:** [[00_Root_MOC|Root MOC]]

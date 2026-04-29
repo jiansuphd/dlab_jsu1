@@ -17,4 +17,4 @@ After pushing to GitHub, the Pages site will refresh (which might take around 15
 *(Note: Since the repository has been restructured, folders placed inside `10_Projects/` will follow the path `https://jiansuphd.github.io/dlab_jsu1/10_Projects/<your_folder_name_here>/`)*
 
 ---
-**Backlinks:** [[Root_MOC|Root MOC]], [[20_Wiki_MOC|Wiki MOC]]
+**Backlinks:** [[00_Root_MOC|Root MOC]], [[20_Wiki_MOC|Wiki MOC]]

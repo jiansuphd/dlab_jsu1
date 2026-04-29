@@ -19,13 +19,13 @@ Append-only record of wiki operations.
 ## [2026-04-15] lint | Structural Reorganization
 - Restructured folders into `00_Meta/`, `10_Projects/`, and `20_Wiki/`.
 - Renamed project folders with `1x_` numbering index.
-- Created `Root_MOC.md`, `10_Projects/10_Projects_MOC.md`, and `20_Wiki/20_Wiki_MOC.md`.
+- Created `00_Root_MOC.md`, `10_Projects/10_Projects_MOC.md`, and `20_Wiki/20_Wiki_MOC.md`.
 - Updated `GEMINI.md` schema to reflect the new architecture.
 - Updated all existing wiki markdown pages to point to their new raw source locations.
 
 ## [2026-04-15] lint | Backlinking and Indexing Review
 - Appended `**Backlinks:**` sections to all leaf nodes in `00_Meta/` and `20_Wiki/`.
-- Updated MOC files (`Root_MOC.md`, `10_Projects_MOC.md`, `20_Wiki_MOC.md`) to use robust internal linking syntax.
+- Updated MOC files (`00_Root_MOC.md`, `10_Projects_MOC.md`, `20_Wiki_MOC.md`) to use robust internal linking syntax.
 - Ensured no orphan files exist within the core structural directories.
 
 ## [2026-04-15] lint | Live Links & README Consolidation
@@ -74,4 +74,4 @@ Append-only record of wiki operations.
 - Verified internal links and backlinks across the entire wiki.
 
 ---
-**Backlinks:** [[Root_MOC|Root MOC]]
+**Backlinks:** [[00_Root_MOC|Root MOC]]

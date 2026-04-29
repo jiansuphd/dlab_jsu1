@@ -7,11 +7,11 @@ This repository is maintained using the "knowledge compiler" concept. The Gemini
 1. **00_Meta**: Repository configuration, schemas, and ignored progress/logs.
 2. **10_Projects (Raw Sources)**: The various project folders in this repository (e.g., `probability_lab`, `bankershotseat`, `evolutionoftrust`, `emojiworldsimulator`, `15_alchemyformula`). These are the primary sources of truth.
 3. **20_Wiki**: Contains LLM-generated markdown files that summarize, index, and synthesize the raw sources.
-4. **MOCs (Maps of Content)**: Central index files like `Root_MOC.md`, `10_Projects_MOC.md`, and `20_Wiki_MOC.md` (located in `00_Meta/`) that provide an interconnected overview.
+4. **MOCs (Maps of Content)**: Central index files like `00_Root_MOC.md`, `10_Projects_MOC.md`, and `20_Wiki_MOC.md` (located in `00_Meta/`) that provide an interconnected overview.
 
 ## Core Files
 
-- `00_Meta/Root_MOC.md`: The central hub connecting all top-level domains.
+- `00_Meta/00_Root_MOC.md`: The central hub connecting all top-level domains.
 - `00_Meta/20_Wiki_MOC.md`: A catalog of all pages in the wiki, organized by category. Each entry includes a link and a one-line summary.
 - `00_Meta/log.md`: An append-only chronological log of all actions taken by the LLM (ingests, queries, lint passes). Entries start with `## [YYYY-MM-DD] action | Description`.
 
@@ -33,5 +33,5 @@ When instructed to **Lint**:
 2. Ensure MOCs accurately reflect the contents of their directories.
 3. Verify that `00_Meta/log.md` is properly formatted.
 ---
-**Backlinks:** [[Root_MOC|Root MOC]]
+**Backlinks:** [[00_Root_MOC|Root MOC]]
 
