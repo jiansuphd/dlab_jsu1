@@ -198,3 +198,9 @@ Conducted a comprehensive, line-by-line review of the entire repository structur
 - Performed a repository-wide link integrity audit to fix all broken references.
 - Finalized the refactoring by confirming all links resolve correctly on GitHub.
 
+## Linking Compatibility: Obsidian vs. GitHub
+*April 30, 2026*
+
+- **Obsidian Wikilinks (`[[...]]`):** Proprietary syntax that relies on Obsidian's internal vault indexing. Not supported by GitHub's standard Markdown parser, causing links to break when viewed on the web.
+- **Relative Markdown Links (`[Link Text](path.md)`):** Universal syntax based on explicit file paths. Compatible with both the Obsidian app and GitHub's web interface, ensuring robust cross-platform navigation.
+- **Standardization Strategy:** By refactoring all links and backlinks to use relative Markdown paths, the repository now guarantees functional navigation across all Markdown-viewing platforms.
