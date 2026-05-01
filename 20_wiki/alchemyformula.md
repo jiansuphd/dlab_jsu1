@@ -22,4 +22,4 @@ This simulation and tool set are highly relevant for courses in:
 - **Education & Computer Science:** Exploring the conditions required for "Sovereign AI" to provide accurate, grounded guidance in high-stakes environments like Medicine or Engineering.
 
 ---
-**Backlinks:** [Wiki MOC](20_Wiki_MOC.md)
+**Backlinks:** [Wiki MOC](./20_wiki_MOC.md), [Root MOC](../00_Root_MOC.md)

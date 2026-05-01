@@ -12,4 +12,4 @@ A Map of Content for all the raw source projects stored in this directory. These
 *For synthesized knowledge and documentation about these projects, refer to the [Wiki MOC](20_Wiki_MOC.md).*
 
 ---
-**Backlinks:** [Root MOC](00_Root_MOC.md)
+**Backlinks:** [Root MOC](../00_Root_MOC.md)
