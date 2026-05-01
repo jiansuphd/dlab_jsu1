@@ -75,3 +75,11 @@ Append-only record of wiki operations.
 
 ---
 **Backlinks:** [Root MOC](../root_MOC.md)
+
+## [2026-04-30] lint | Repository Refactoring & Link Standardization
+- Renamed directories to `00_meta`, `10_projects`, and `20_wiki`.
+- Relocated and renamed MOC files to `root_MOC.md`, `10_projects/10_projects_MOC.md`, and `20_wiki/20_wiki_MOC.md`.
+- Converted all wikilinks to GitHub-compatible relative markdown links.
+- Standardized all backlink footers to use robust relative paths (`../root_MOC.md`) for consistent GitHub UI resolution.
+- Performed repository-wide lint and audit of all internal and external link paths.
+
