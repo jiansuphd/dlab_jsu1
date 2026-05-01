@@ -170,4 +170,11 @@ Conducted a comprehensive, line-by-line review of the entire repository structur
 - **Final Lint Pass:** Verified all backlink footers, internal MOC links, and external project links. Confirmed no orphaned files or broken references remain.
 
 ---
-**Backlinks:** [Root MOC](00_Root_MOC.md)
+
+## Directory Renaming
+*April 30, 2026*
+
+- Renamed `meta` to `00_meta`, `projects` to `10_projects`, and `wiki` to `20_wiki` to align with the reference repository structure.
+
+---
+
