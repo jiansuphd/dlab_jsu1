@@ -3,7 +3,7 @@
 A catalog and Map of Content for all synthesized pages in the knowledge base.
 
 ## 📚 Projects Documentation
-- [README_DLab](README_DLab.md) - Repository overview and legacy deployment instructions
+- [README_DLab](../00_meta/README_dlab.md) - Repository overview and legacy deployment instructions
 - [probabilitylab](probabilitylab.md) - Probability Lab
 - [bankershotseat](bankershotseat.md) - Banker's Hot Seat: Interactive Game
 - [evolutionoftrust](evolutionoftrust.md) - Evolution of Trust
