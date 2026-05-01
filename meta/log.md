@@ -74,4 +74,4 @@ Append-only record of wiki operations.
 - Verified internal links and backlinks across the entire wiki.
 
 ---
-**Backlinks:** [[00_Root_MOC|Root MOC]]
+**Backlinks:** [Root MOC](00_Root_MOC.md)

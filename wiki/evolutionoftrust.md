@@ -16,4 +16,4 @@ This simulation is highly relevant for courses in:
 - **Political Science & Philosophy/Ethics:** Analyzing cooperation, conflict, and the societal impact of miscommunication.
 
 ---
-**Backlinks:** [[20_Wiki_MOC|Wiki MOC]]
+**Backlinks:** [Wiki MOC](20_Wiki_MOC.md)

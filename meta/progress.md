@@ -149,9 +149,9 @@ Conducted a comprehensive, line-by-line review of the entire repository structur
 - Ensured `00_Root_MOC.md`, `10_Projects_MOC.md`, and `20_Wiki_MOC.md` accurately point to their respective contents using standard Obsidian linking syntax.
 
 **2. Backlinking & Orphan Check:**
-- Confirmed that all files in `20_Wiki` contain a robust `**Backlinks:** [[20_Wiki_MOC|Wiki MOC]]` footer.
-- Confirmed that all files in `00_Meta` contain a `**Backlinks:** [[00_Root_MOC|Root MOC]]` footer.
-- Removed a legacy broken link (`[[99_System/99_Home_MOC|Home MOC]]`) from `00_Meta/llm-wiki.md`.
+- Confirmed that all files in `20_Wiki` contain a robust `**Backlinks:** [Wiki MOC](20_Wiki_MOC.md)` footer.
+- Confirmed that all files in `00_Meta` contain a `**Backlinks:** [Root MOC](00_Root_MOC.md)` footer.
+- Removed a legacy broken link (`[Home MOC](99_System/99_Home_MOC.md)`) from `00_Meta/llm-wiki.md`.
 - Verified no orphaned files exist within the system.
 
 **3. External Links:**
@@ -170,4 +170,4 @@ Conducted a comprehensive, line-by-line review of the entire repository structur
 - **Final Lint Pass:** Verified all backlink footers, internal MOC links, and external project links. Confirmed no orphaned files or broken references remain.
 
 ---
-**Backlinks:** [[00_Root_MOC|Root MOC]]
+**Backlinks:** [Root MOC](00_Root_MOC.md)

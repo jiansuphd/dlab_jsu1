@@ -20,4 +20,4 @@ A high-stakes credit negotiation simulation where students must secure $250,000 
 - **CLO Alignment:** CLO 6 (Analyze capital requirements and credit options).
 
 ---
-**Backlinks:** [[20_Wiki_MOC|Wiki MOC]]
+**Backlinks:** [Wiki MOC](20_Wiki_MOC.md)
