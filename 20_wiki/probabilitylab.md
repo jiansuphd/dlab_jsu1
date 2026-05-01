@@ -15,4 +15,4 @@ An interactive "Casino of Chance" simulation (Data 101) where users can watch ma
 - **Law of Large Numbers:** Demonstrates how empirical results converge on theoretical probabilities as sample size increases.
 
 ---
-**Backlinks:** [Wiki MOC](./20_wiki_MOC.md), [Root MOC](../00_Root_MOC.md)
+**Backlinks:** [Wiki MOC](./20_wiki_MOC.md), [Root MOC](../root_MOC.md)

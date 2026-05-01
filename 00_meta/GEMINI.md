@@ -11,7 +11,7 @@ This repository is maintained using the "knowledge compiler" concept. The Gemini
 
 ## Core Files
 
-- `00_Meta/00_Root_MOC.md`: The central hub connecting all top-level domains.
+- `00_Me../root_MOC.md`: The central hub connecting all top-level domains.
 - `00_Meta/20_Wiki_MOC.md`: A catalog of all pages in the wiki, organized by category. Each entry includes a link and a one-line summary.
 - `00_Meta/log.md`: An append-only chronological log of all actions taken by the LLM (ingests, queries, lint passes). Entries start with `## [YYYY-MM-DD] action | Description`.
 
@@ -33,5 +33,5 @@ When instructed to **Lint**:
 2. Ensure MOCs accurately reflect the contents of their directories.
 3. Verify that `00_Meta/log.md` is properly formatted.
 ---
-**Backlinks:** [Root MOC](../00_Root_MOC.md)
+**Backlinks:** [Root MOC](../root_MOC.md)
 

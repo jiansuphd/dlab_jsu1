@@ -21,4 +21,4 @@ This simulation is highly relevant for courses in:
 - **Physics & Chemistry:** Simulating particle interactions, diffusion, and state changes.
 
 ---
-**Backlinks:** [Wiki MOC](./20_wiki_MOC.md), [Root MOC](../00_Root_MOC.md)
+**Backlinks:** [Wiki MOC](./20_wiki_MOC.md), [Root MOC](../root_MOC.md)

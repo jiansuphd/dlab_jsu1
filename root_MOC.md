@@ -16,4 +16,4 @@ Welcome to the central Map of Content for this repository. This structure is bui
 - Check out the latest actions in the [Maintenance Log](00_meta/log.md).
 
 ---
-**Backlinks:** [Root MOC](00_Root_MOC.md)
+**Backlinks:** [Root MOC](root_MOC.md)
